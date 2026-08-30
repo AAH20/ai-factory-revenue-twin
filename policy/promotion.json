@@ -1,0 +1,1 @@
+{"required":["microbenchmarks","digital_twin","canary","independent_approval","rollback"],"prohibited":["agent_self_approval","unbounded_cluster_target","missing_artifact_hashes","production_execution_from_synthetic_replay"]}

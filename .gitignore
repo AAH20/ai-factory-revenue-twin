@@ -1,0 +1,6 @@
+__pycache__/
+*.egg-info/
+.venv/
+.azure-local/
+.dotnet-bundle/
+generated/latest/

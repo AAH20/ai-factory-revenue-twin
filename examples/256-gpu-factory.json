@@ -1,0 +1,25 @@
+{
+  "factory_intent": {
+    "name": "multi-tenant-256-gpu-ai-factory",
+    "gpu_count": 256,
+    "gpu_hour_cost": 3.5,
+    "monthly_platform_revenue": 1300000,
+    "target_useful_utilization": 0.70,
+    "minimum_contribution_margin": 0.30,
+    "target_nccl_busbw_gbps": 350,
+    "target_inference_p95_ms": 180,
+    "target_storage_gbps": 120,
+    "human_approval_required": true
+  },
+  "telemetry_replay": {
+    "useful_gpu_utilization": 0.55,
+    "nccl_busbw_gbps": 265,
+    "inference_p95_ms": 245,
+    "storage_gbps": 84,
+    "roce_pfc_pause_rate": 0.071,
+    "ecn_mark_rate": 0.13,
+    "nvlink_degraded_links": 1,
+    "xid_errors": 3,
+    "cross_rack_job_fraction": 0.64
+  }
+}

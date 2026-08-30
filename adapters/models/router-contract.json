@@ -1,0 +1,10 @@
+{
+  "version":"1.0",
+  "routes":[
+    {"workflow":"telemetry_classification","provider":"nemotron-nim","gate":"quality_and_cost_threshold"},
+    {"workflow":"cross_stack_diagnosis","provider":"frontier-reasoning","gate":"evidence_precision"},
+    {"workflow":"repository_engineering","provider":"codex-class","gate":"tests_pass"},
+    {"workflow":"promotion_authority","provider":"deterministic-policy","gate":"independent-human-approval"}
+  ],
+  "current_demo_status":"provider_contracts_only_except_deterministic_route"
+}

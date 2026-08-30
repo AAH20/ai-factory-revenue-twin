@@ -1,0 +1,9 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Partner-executed NVIDIA AI factory telemetry receipt",
+  "type":"object",
+  "required":["collector_version","hardware_profile","software_versions","metrics","artifact_hashes"],
+  "properties":{"collector_version":{"type":"string"},"hardware_profile":{"type":"object"},"software_versions":{"type":"object"},"metrics":{"type":"object"},"artifact_hashes":{"type":"array","items":{"type":"string"}},"attestation":{"type":"object"}},
+  "supported_sources":["DCGM","NCCL tests","NVLink counters","InfiniBand counters","RoCE counters","NIM metrics"],
+  "current_demo_status":"contract_only_no_nvidia_hardware_execution"
+}

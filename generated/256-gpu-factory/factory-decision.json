@@ -1,0 +1,204 @@
+{
+  "schema_version": "1.0",
+  "intent": {
+    "name": "multi-tenant-256-gpu-ai-factory",
+    "gpu_count": 256,
+    "gpu_hour_cost": 3.5,
+    "monthly_platform_revenue": 1300000.0,
+    "target_useful_utilization": 0.7,
+    "minimum_contribution_margin": 0.3,
+    "target_nccl_busbw_gbps": 350.0,
+    "target_inference_p95_ms": 180.0,
+    "target_storage_gbps": 120.0,
+    "human_approval_required": true
+  },
+  "telemetry": {
+    "useful_gpu_utilization": 0.55,
+    "nccl_busbw_gbps": 265,
+    "inference_p95_ms": 245,
+    "storage_gbps": 84,
+    "roce_pfc_pause_rate": 0.071,
+    "ecn_mark_rate": 0.13,
+    "nvlink_degraded_links": 1,
+    "xid_errors": 3,
+    "cross_rack_job_fraction": 0.64
+  },
+  "diagnosis": {
+    "signals": [
+      "collective_bandwidth_regression",
+      "pfc_congestion",
+      "ecn_pressure",
+      "storage_starvation",
+      "inference_latency",
+      "nvlink_degradation",
+      "gpu_xid_errors"
+    ],
+    "ranked_hypotheses": [
+      {
+        "cause": "roce_congestion_and_cross_rack_placement",
+        "confidence": 0.86
+      },
+      {
+        "cause": "checkpoint_and_dataset_io_contention",
+        "confidence": 0.72
+      },
+      {
+        "cause": "host_or_gpu_fabric_fault",
+        "confidence": 0.68
+      }
+    ],
+    "evidence_source": "versioned synthetic replay"
+  },
+  "topology_options": [
+    {
+      "topology": {
+        "id": "ethernet-2to1",
+        "name": "Ethernet Clos 2:1 oversubscribed",
+        "monthly_fabric_cost": 95000,
+        "efficiency": 0.78,
+        "estimated_nccl_busbw_gbps": 280,
+        "availability": 0.999,
+        "risk": 0.08
+      },
+      "feasible": false,
+      "violations": [
+        "collective_bandwidth"
+      ],
+      "economics": {
+        "gpu_capacity_cost": 654080.0,
+        "fabric_cost": 95000,
+        "monthly_delivery_cost": 749080.0,
+        "monthly_contribution": 550920.0,
+        "contribution_margin": 0.4238,
+        "useful_gpu_equivalents": 140.8,
+        "capacity_gap_gpu_equivalents": 38.4,
+        "capacity_deferral_value": 98112.0,
+        "cost_per_useful_gpu_hour": 7.29
+      }
+    },
+    {
+      "topology": {
+        "id": "roce-1to1",
+        "name": "Lossless Ethernet/RoCE 1:1",
+        "monthly_fabric_cost": 145000,
+        "efficiency": 0.91,
+        "estimated_nccl_busbw_gbps": 380,
+        "availability": 0.9997,
+        "risk": 0.045
+      },
+      "feasible": true,
+      "violations": [],
+      "economics": {
+        "gpu_capacity_cost": 654080.0,
+        "fabric_cost": 145000,
+        "monthly_delivery_cost": 799080.0,
+        "monthly_contribution": 500920.0,
+        "contribution_margin": 0.3853,
+        "useful_gpu_equivalents": 140.8,
+        "capacity_gap_gpu_equivalents": 38.4,
+        "capacity_deferral_value": 98112.0,
+        "cost_per_useful_gpu_hour": 7.77
+      }
+    },
+    {
+      "topology": {
+        "id": "infiniband-1to1",
+        "name": "InfiniBand non-blocking",
+        "monthly_fabric_cost": 180000,
+        "efficiency": 0.95,
+        "estimated_nccl_busbw_gbps": 420,
+        "availability": 0.9998,
+        "risk": 0.035
+      },
+      "feasible": true,
+      "violations": [],
+      "economics": {
+        "gpu_capacity_cost": 654080.0,
+        "fabric_cost": 180000,
+        "monthly_delivery_cost": 834080.0,
+        "monthly_contribution": 465920.0,
+        "contribution_margin": 0.3584,
+        "useful_gpu_equivalents": 140.8,
+        "capacity_gap_gpu_equivalents": 38.4,
+        "capacity_deferral_value": 98112.0,
+        "cost_per_useful_gpu_hour": 8.11
+      }
+    }
+  ],
+  "selected": {
+    "topology": {
+      "id": "roce-1to1",
+      "name": "Lossless Ethernet/RoCE 1:1",
+      "monthly_fabric_cost": 145000,
+      "efficiency": 0.91,
+      "estimated_nccl_busbw_gbps": 380,
+      "availability": 0.9997,
+      "risk": 0.045
+    },
+    "feasible": true,
+    "violations": [],
+    "economics": {
+      "gpu_capacity_cost": 654080.0,
+      "fabric_cost": 145000,
+      "monthly_delivery_cost": 799080.0,
+      "monthly_contribution": 500920.0,
+      "contribution_margin": 0.3853,
+      "useful_gpu_equivalents": 140.8,
+      "capacity_gap_gpu_equivalents": 38.4,
+      "capacity_deferral_value": 98112.0,
+      "cost_per_useful_gpu_hour": 7.77
+    }
+  },
+  "model_routes": [
+    {
+      "workflow": "telemetry_classification",
+      "route": "nemotron_nim",
+      "reason": "high-volume bounded private workload",
+      "status": "contract_only"
+    },
+    {
+      "workflow": "cross_stack_diagnosis",
+      "route": "frontier_reasoning_escalation",
+      "reason": "ambiguous multi-system investigation",
+      "status": "provider-neutral contract"
+    },
+    {
+      "workflow": "iac_and_collector_changes",
+      "route": "codex_class_engineering_agent",
+      "reason": "testable repository work",
+      "status": "provider-neutral contract"
+    },
+    {
+      "workflow": "financial_and_promotion_decision",
+      "route": "deterministic_code",
+      "reason": "authority boundary",
+      "status": "executed"
+    }
+  ],
+  "remediation": {
+    "actions": [
+      "reschedule_collective_workload_with_rack_affinity",
+      "validate_ecn_pfc_thresholds",
+      "isolate_checkpoint_io_window"
+    ],
+    "blast_radius": "one workload queue and one leaf pair",
+    "automatic_execution": false,
+    "required_scenarios": [
+      "nccl_regression",
+      "leaf_failure",
+      "storage_contention",
+      "rollback"
+    ],
+    "rollback": "restore scheduler policy and switch configuration revision",
+    "expected_capacity_deferral_value": 98112.0
+  },
+  "promotion": {
+    "receipt_sha256": "2be35a054474df015d5fd1d4c17d4881c6d6902eec2b3676d70ec5977512b75e",
+    "microbenchmarks": "required",
+    "digital_twin": "required",
+    "canary": "required",
+    "independent_approval": "required",
+    "automatic_production_execution": "prohibited"
+  },
+  "evidence_boundary": "Synthetic telemetry and reference economics are not DCGM, NCCL, InfiniBand, RoCE, NIM, GPU-cluster or customer measurements."
+}
