@@ -56,6 +56,20 @@ The example uses configurable assumptions: 256 GPUs at $3.50/GPU-hour, 55% usefu
 See the [search-term evidence map](docs/search-term-evidence.md) and
 [partner validation ladder](docs/partner-validation.md).
 
+## Azure deployment evidence
+
+The lightweight evidence plane was deployed successfully on 30 August 2026 to
+`rg-ai-factory-revenue-twin-demo` in East US. The public evidence intentionally
+omits tenant, subscription and deployment-correlation identifiers.
+
+Provisioned resources:
+
+- Application Insights: `aifactory-ai-eakuv4w2vryd6`
+- Log Analytics workspace: `aifactory-law-eakuv4w2vryd6`
+- Storage account and private receipt container: `aifactoryeakuv4w2vryd6`
+
+![Azure evidence-plane resources](docs/evidence/azure-resource-group.png)
+
 ## Roadmap
 
 1. Topology schema and interactive graph.

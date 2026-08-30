@@ -4,3 +4,4 @@ __pycache__/
 .azure-local/
 .dotnet-bundle/
 generated/latest/
+docs/evidence/azure-deployment-complete.png
