@@ -1,4 +1,6 @@
-# Agentic AI Factory Revenue & Reliability Twin
+# AI Fabric Autopilot: Agentic AI Factory Revenue, GPU, Network and Hybrid Cloud Control Plane
+
+## Artificial Intelligence, Generative AI, Cloud Computing, Microsoft Azure, AWS, Google Cloud, Apache CloudStack, VMware, Proxmox, Virtualization, Docker, Kubernetes, DevOps, Network Automation, Ansible, Chef, Puppet, Infrastructure as Code and Compliance as Code
 
 **Convert AI-factory workload demand, topology and cross-stack telemetry into a measurable architecture decision, capacity economics, bounded remediation and production-readiness receipt.**
 
@@ -32,6 +34,11 @@ flowchart LR
 - defines partner receipts for DCGM, NCCL, NVLink, InfiniBand, RoCE and NIM metrics;
 - includes a Bicep Azure evidence plane;
 - runs with no third-party Python dependencies.
+- compiles an Apache CloudStack/KVM OSS IaaS foundation against VMware, standalone Proxmox and the CloudStack 4.22 Proxmox Extension contract;
+- compares customer-controlled infrastructure with Azure/AKS, AWS/EKS and Google Cloud/GKE reference placement profiles;
+- defines VirtualBox as development-only, Docker/OCI packaging and Kubernetes priority, quota and disruption policy;
+- provides Terraform/OpenTofu, Bicep, Ansible network-readiness, Chef, Puppet and OPA/Rego contracts;
+- emits 30 business, GPU, capacity, network, AI, SRE, FinOps, delivery, automation, compliance and sustainability KPIs.
 
 ## Run
 
@@ -43,6 +50,14 @@ PYTHONPATH=src python3 -m unittest discover -s tests -v
 ## Reference economics
 
 The example uses configurable assumptions: 256 GPUs at $3.50/GPU-hour, 55% useful utilization and a 70% target. The gap represents 38.4 GPU equivalents and $98,112/month of modeled capacity-deferral value. That is not automatically cash savings; it can mean deferred purchases or additional sellable capacity.
+
+## Hybrid IaaS and comprehensive KPI decision
+
+The disclosed customer-controlled residency, availability, network and budget constraints select **Apache CloudStack with KVM** at a modeled **$325,795.20/month**. This is a reference-catalog result, not a vendor quote or deployed benchmark. Proprietary clouds remain burst candidates but fail this fixture's customer-controlled residency gate.
+
+The scorecard passes **20 of 30** targets and returns `improve-before-hardware-validation`. GPU utilization, queue time, forecast error, NCCL bandwidth, latency, packet loss, cross-rack placement, inference success and configuration compliance remain explicit gaps.
+
+Review the [hybrid-cloud foundation](docs/hybrid-cloud-foundation.md), [generated infrastructure decision](generated/256-gpu-factory/infrastructure-foundation.md), [generated KPI scorecard](generated/256-gpu-factory/kpi-scorecard.md), and [search positioning](docs/search-positioning-2026.md).
 
 ## Claim boundary
 

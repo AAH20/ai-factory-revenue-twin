@@ -1,0 +1,23 @@
+apiVersion: scheduling.k8s.io/v1
+kind: PriorityClass
+metadata: {name: revenue-critical-ai}
+value: 1000000
+globalDefault: false
+preemptionPolicy: PreemptLowerPriority
+description: Revenue workloads eligible to preempt explicitly preemptible batch capacity.
+---
+apiVersion: v1
+kind: ResourceQuota
+metadata: {name: gpu-tenant-quota, namespace: ai-workloads}
+spec:
+  hard:
+    requests.cpu: "128"
+    requests.memory: 512Gi
+    limits.nvidia.com/gpu: "16"
+---
+apiVersion: policy/v1
+kind: PodDisruptionBudget
+metadata: {name: inference-availability, namespace: ai-workloads}
+spec:
+  minAvailable: 2
+  selector: {matchLabels: {workload.a2zsoc.com/class: inference}}

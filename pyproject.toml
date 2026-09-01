@@ -4,8 +4,8 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "aifactory-twin"
-version = "0.1.0"
-description = "Agentic AI Factory Revenue and Reliability Twin"
+version = "0.2.0"
+description = "AI infrastructure, GPU and network optimization across Azure, CloudStack, VMware, Proxmox, Docker and Kubernetes"
 requires-python = ">=3.11"
 dependencies = []
 

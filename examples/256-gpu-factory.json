@@ -21,5 +21,35 @@
     "nvlink_degraded_links": 1,
     "xid_errors": 3,
     "cross_rack_job_fraction": 0.64
+  },
+  "infrastructure_foundation": {
+    "gpu_count": 256,
+    "monthly_gpu_hours": 130816,
+    "minimum_availability": 0.999,
+    "minimum_network_score": 0.85,
+    "maximum_monthly_cost": 400000,
+    "required_residency": "customer-controlled"
+  },
+  "kpi_observations": {
+    "gpu_queue_p95_minutes": 18,
+    "capacity_forecast_error_pct": 12,
+    "packet_loss_pct": 0.18,
+    "inference_success_pct": 99.7,
+    "quality_eval_pass_pct": 96,
+    "cost_per_successful_inference_usd": 0.008,
+    "availability_pct": 99.93,
+    "mttr_minutes": 26,
+    "automated_recovery_pct": 92,
+    "foundation_budget_usd": 400000,
+    "deployments_per_week": 6,
+    "change_failure_pct": 8,
+    "provisioning_p95_minutes": 24,
+    "iac_coverage_pct": 100,
+    "network_automation_pct": 96,
+    "configuration_compliance_pct": 98.5,
+    "policy_coverage_pct": 100,
+    "evidence_completeness_pct": 100,
+    "critical_drift_mttr_minutes": 48,
+    "wh_per_successful_outcome": 4.6
   }
 }

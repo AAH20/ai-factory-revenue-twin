@@ -1,0 +1,317 @@
+{
+  "schema_version": "aifactory/kpi/v1",
+  "summary": {
+    "passed": 20,
+    "total": 30,
+    "attainment_pct": 66.67
+  },
+  "hard_gates": {
+    "no_autonomous_production": true,
+    "evidence_complete": true,
+    "policy_complete": true
+  },
+  "decision": "improve-before-hardware-validation",
+  "metrics": [
+    {
+      "name": "monthly contribution",
+      "category": "business",
+      "value": 500920.0,
+      "unit": "USD",
+      "target": 500000,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled economics"
+    },
+    {
+      "name": "contribution margin",
+      "category": "business",
+      "value": 38.53,
+      "unit": "%",
+      "target": 30,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled economics"
+    },
+    {
+      "name": "revenue per useful GPU hour",
+      "category": "business",
+      "value": 12.6479,
+      "unit": "USD",
+      "target": 8,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled economics"
+    },
+    {
+      "name": "capacity deferral value",
+      "category": "business",
+      "value": 98112.0,
+      "unit": "USD/month",
+      "target": 50000,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "modeled economics"
+    },
+    {
+      "name": "useful GPU utilization",
+      "category": "capacity",
+      "value": 55.0,
+      "unit": "%",
+      "target": 70.0,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "idle GPU capacity",
+      "category": "capacity",
+      "value": 45.0,
+      "unit": "%",
+      "target": 20,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "GPU queue p95",
+      "category": "capacity",
+      "value": 18,
+      "unit": "minutes",
+      "target": 10,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "capacity forecast error",
+      "category": "capacity",
+      "value": 12,
+      "unit": "%",
+      "target": 10,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "NCCL bus bandwidth",
+      "category": "network",
+      "value": 265,
+      "unit": "Gbps",
+      "target": 350.0,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "inference latency p95",
+      "category": "network",
+      "value": 245,
+      "unit": "ms",
+      "target": 180.0,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "packet loss",
+      "category": "network",
+      "value": 0.18,
+      "unit": "%",
+      "target": 0.1,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "cross-rack workload fraction",
+      "category": "network",
+      "value": 64.0,
+      "unit": "%",
+      "target": 30,
+      "direction": "lower",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "inference success",
+      "category": "ai",
+      "value": 99.7,
+      "unit": "%",
+      "target": 99.9,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "quality evaluation pass",
+      "category": "ai",
+      "value": 96,
+      "unit": "%",
+      "target": 95,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "cost per successful inference",
+      "category": "ai",
+      "value": 0.008,
+      "unit": "USD",
+      "target": 0.01,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "availability",
+      "category": "reliability",
+      "value": 99.93,
+      "unit": "%",
+      "target": 99.9,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "MTTR",
+      "category": "reliability",
+      "value": 26,
+      "unit": "minutes",
+      "target": 30,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "automated recovery success",
+      "category": "reliability",
+      "value": 92,
+      "unit": "%",
+      "target": 90,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "foundation monthly cost",
+      "category": "finops",
+      "value": 325795.2,
+      "unit": "USD",
+      "target": 400000,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "reference catalog"
+    },
+    {
+      "name": "cost per useful GPU hour",
+      "category": "finops",
+      "value": 7.77,
+      "unit": "USD",
+      "target": 8,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "modeled economics"
+    },
+    {
+      "name": "deployment frequency",
+      "category": "delivery",
+      "value": 6,
+      "unit": "per week",
+      "target": 5,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "change failure rate",
+      "category": "delivery",
+      "value": 8,
+      "unit": "%",
+      "target": 10,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "environment provisioning p95",
+      "category": "delivery",
+      "value": 24,
+      "unit": "minutes",
+      "target": 30,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "IaC coverage",
+      "category": "automation",
+      "value": 100,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "network automation coverage",
+      "category": "automation",
+      "value": 96,
+      "unit": "%",
+      "target": 95,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "configuration compliance",
+      "category": "automation",
+      "value": 98.5,
+      "unit": "%",
+      "target": 99,
+      "direction": "higher",
+      "passed": false,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "policy coverage",
+      "category": "compliance",
+      "value": 100,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "evidence completeness",
+      "category": "compliance",
+      "value": 100,
+      "unit": "%",
+      "target": 100,
+      "direction": "higher",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "critical drift remediation",
+      "category": "compliance",
+      "value": 48,
+      "unit": "minutes",
+      "target": 60,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic replay"
+    },
+    {
+      "name": "energy per successful outcome",
+      "category": "sustainability",
+      "value": 4.6,
+      "unit": "Wh",
+      "target": 5,
+      "direction": "lower",
+      "passed": true,
+      "evidence": "synthetic replay"
+    }
+  ],
+  "claim_boundary": "KPIs combine deterministic synthetic telemetry, reference catalog prices and disclosed modeled observations; they are not physical-cluster measurements."
+}

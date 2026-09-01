@@ -1,0 +1,183 @@
+{
+  "schema_version": "aifactory/foundation/v1",
+  "selected": {
+    "platform": {
+      "id": "cloudstack-kvm",
+      "control_plane": "Apache CloudStack",
+      "virtualization": "KVM",
+      "class": "oss-iaas",
+      "fixed_monthly": 38000,
+      "gpu_hour": 2.2,
+      "network_score": 0.88,
+      "availability": 0.9995,
+      "residency": "customer-controlled",
+      "automation": "Ansible + Terraform/OpenTofu"
+    },
+    "monthly_cost_usd": 325795.2,
+    "cost_per_gpu_hour_usd": 2.49,
+    "feasible": true,
+    "violations": [],
+    "score": 59.14
+  },
+  "options": [
+    {
+      "platform": {
+        "id": "cloudstack-kvm",
+        "control_plane": "Apache CloudStack",
+        "virtualization": "KVM",
+        "class": "oss-iaas",
+        "fixed_monthly": 38000,
+        "gpu_hour": 2.2,
+        "network_score": 0.88,
+        "availability": 0.9995,
+        "residency": "customer-controlled",
+        "automation": "Ansible + Terraform/OpenTofu"
+      },
+      "monthly_cost_usd": 325795.2,
+      "cost_per_gpu_hour_usd": 2.49,
+      "feasible": true,
+      "violations": [],
+      "score": 59.14
+    },
+    {
+      "platform": {
+        "id": "cloudstack-vmware",
+        "control_plane": "Apache CloudStack",
+        "virtualization": "VMware vSphere",
+        "class": "hybrid-iaas",
+        "fixed_monthly": 69000,
+        "gpu_hour": 2.35,
+        "network_score": 0.91,
+        "availability": 0.9997,
+        "residency": "customer-controlled",
+        "automation": "Ansible + Terraform"
+      },
+      "monthly_cost_usd": 376417.6,
+      "cost_per_gpu_hour_usd": 2.88,
+      "feasible": true,
+      "violations": [],
+      "score": 54.5
+    },
+    {
+      "platform": {
+        "id": "proxmox-kvm",
+        "control_plane": "Proxmox VE",
+        "virtualization": "KVM/LXC",
+        "class": "oss-virtualization",
+        "fixed_monthly": 31000,
+        "gpu_hour": 2.15,
+        "network_score": 0.84,
+        "availability": 0.999,
+        "residency": "customer-controlled",
+        "automation": "Ansible + OpenTofu"
+      },
+      "monthly_cost_usd": 312254.4,
+      "cost_per_gpu_hour_usd": 2.39,
+      "feasible": false,
+      "violations": [
+        "network_score"
+      ],
+      "score": 19.25
+    },
+    {
+      "platform": {
+        "id": "cloudstack-proxmox-extension",
+        "control_plane": "Apache CloudStack 4.22 Extension",
+        "virtualization": "Proxmox VE",
+        "class": "oss-extension-contract",
+        "fixed_monthly": 35000,
+        "gpu_hour": 2.18,
+        "network_score": 0.84,
+        "availability": 0.999,
+        "residency": "customer-controlled",
+        "automation": "Ansible + Terraform/OpenTofu"
+      },
+      "monthly_cost_usd": 320178.88,
+      "cost_per_gpu_hour_usd": 2.45,
+      "feasible": false,
+      "violations": [
+        "network_score"
+      ],
+      "score": 18.36
+    },
+    {
+      "platform": {
+        "id": "azure-aks",
+        "control_plane": "Microsoft Azure / AKS",
+        "virtualization": "managed cloud",
+        "class": "proprietary-cloud",
+        "fixed_monthly": 12000,
+        "gpu_hour": 3.5,
+        "network_score": 0.93,
+        "availability": 0.9999,
+        "residency": "provider-region",
+        "automation": "Bicep + Terraform + GitOps"
+      },
+      "monthly_cost_usd": 469856.0,
+      "cost_per_gpu_hour_usd": 3.59,
+      "feasible": false,
+      "violations": [
+        "monthly_cost",
+        "residency"
+      ],
+      "score": -27.45
+    },
+    {
+      "platform": {
+        "id": "aws-eks",
+        "control_plane": "AWS / EKS",
+        "virtualization": "managed cloud",
+        "class": "proprietary-cloud",
+        "fixed_monthly": 13000,
+        "gpu_hour": 3.65,
+        "network_score": 0.92,
+        "availability": 0.9999,
+        "residency": "provider-region",
+        "automation": "CloudFormation + Terraform + GitOps"
+      },
+      "monthly_cost_usd": 490478.4,
+      "cost_per_gpu_hour_usd": 3.75,
+      "feasible": false,
+      "violations": [
+        "monthly_cost",
+        "residency"
+      ],
+      "score": -27.8
+    },
+    {
+      "platform": {
+        "id": "gcp-gke",
+        "control_plane": "Google Cloud / GKE",
+        "virtualization": "managed cloud",
+        "class": "proprietary-cloud",
+        "fixed_monthly": 12500,
+        "gpu_hour": 3.45,
+        "network_score": 0.92,
+        "availability": 0.9999,
+        "residency": "provider-region",
+        "automation": "Terraform + Config Connector + GitOps"
+      },
+      "monthly_cost_usd": 463815.2,
+      "cost_per_gpu_hour_usd": 3.55,
+      "feasible": false,
+      "violations": [
+        "monthly_cost",
+        "residency"
+      ],
+      "score": -27.8
+    }
+  ],
+  "stack": {
+    "iaas_foundation": "Apache CloudStack with KVM is the primary OSS reference; VMware is a licensed hypervisor option",
+    "alternative_virtualization": "Proxmox VE is evaluated both independently and as a CloudStack 4.22 Extension contract; neither path is claimed validated here",
+    "development_virtualization": "VirtualBox is restricted to developer contract tests and is prohibited for production GPU claims",
+    "containers": "Docker/OCI images provide portable packaging; Kubernetes provides scheduling, services, policy and GitOps reconciliation",
+    "network_automation": "Ansible inventories and validates switches, routing, BGP/EVPN, VLAN/VXLAN, QoS and rollback",
+    "configuration_management": "Chef and Puppet are supported configuration-state contracts; neither is misrepresented as the primary network controller",
+    "iac": "Terraform/OpenTofu plus Bicep/provider modules; immutable plan, review, apply and rollback receipts",
+    "compliance_as_code": "OPA/Rego and IaC scanning map deployed resources to identity, segmentation, encryption, logging, residency and change controls"
+  },
+  "production_execution": "disabled",
+  "evidence_boundary": "Reference catalog and synthetic demand; no CloudStack, VMware, Proxmox, VirtualBox, Azure, AWS, GCP, Docker, Kubernetes, Ansible, Chef or Puppet environment was operated by this compiler run.",
+  "receipt_sha256": "abcb7300b7ebe37dea2ec8ac6db96000bdc48e83ae187fce1ece54117654f255"
+}

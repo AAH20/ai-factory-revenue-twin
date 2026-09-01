@@ -200,5 +200,505 @@
     "independent_approval": "required",
     "automatic_production_execution": "prohibited"
   },
-  "evidence_boundary": "Synthetic telemetry and reference economics are not DCGM, NCCL, InfiniBand, RoCE, NIM, GPU-cluster or customer measurements."
+  "evidence_boundary": "Synthetic telemetry and reference economics are not DCGM, NCCL, InfiniBand, RoCE, NIM, GPU-cluster or customer measurements.",
+  "infrastructure_foundation": {
+    "schema_version": "aifactory/foundation/v1",
+    "selected": {
+      "platform": {
+        "id": "cloudstack-kvm",
+        "control_plane": "Apache CloudStack",
+        "virtualization": "KVM",
+        "class": "oss-iaas",
+        "fixed_monthly": 38000,
+        "gpu_hour": 2.2,
+        "network_score": 0.88,
+        "availability": 0.9995,
+        "residency": "customer-controlled",
+        "automation": "Ansible + Terraform/OpenTofu"
+      },
+      "monthly_cost_usd": 325795.2,
+      "cost_per_gpu_hour_usd": 2.49,
+      "feasible": true,
+      "violations": [],
+      "score": 59.14
+    },
+    "options": [
+      {
+        "platform": {
+          "id": "cloudstack-kvm",
+          "control_plane": "Apache CloudStack",
+          "virtualization": "KVM",
+          "class": "oss-iaas",
+          "fixed_monthly": 38000,
+          "gpu_hour": 2.2,
+          "network_score": 0.88,
+          "availability": 0.9995,
+          "residency": "customer-controlled",
+          "automation": "Ansible + Terraform/OpenTofu"
+        },
+        "monthly_cost_usd": 325795.2,
+        "cost_per_gpu_hour_usd": 2.49,
+        "feasible": true,
+        "violations": [],
+        "score": 59.14
+      },
+      {
+        "platform": {
+          "id": "cloudstack-vmware",
+          "control_plane": "Apache CloudStack",
+          "virtualization": "VMware vSphere",
+          "class": "hybrid-iaas",
+          "fixed_monthly": 69000,
+          "gpu_hour": 2.35,
+          "network_score": 0.91,
+          "availability": 0.9997,
+          "residency": "customer-controlled",
+          "automation": "Ansible + Terraform"
+        },
+        "monthly_cost_usd": 376417.6,
+        "cost_per_gpu_hour_usd": 2.88,
+        "feasible": true,
+        "violations": [],
+        "score": 54.5
+      },
+      {
+        "platform": {
+          "id": "proxmox-kvm",
+          "control_plane": "Proxmox VE",
+          "virtualization": "KVM/LXC",
+          "class": "oss-virtualization",
+          "fixed_monthly": 31000,
+          "gpu_hour": 2.15,
+          "network_score": 0.84,
+          "availability": 0.999,
+          "residency": "customer-controlled",
+          "automation": "Ansible + OpenTofu"
+        },
+        "monthly_cost_usd": 312254.4,
+        "cost_per_gpu_hour_usd": 2.39,
+        "feasible": false,
+        "violations": [
+          "network_score"
+        ],
+        "score": 19.25
+      },
+      {
+        "platform": {
+          "id": "cloudstack-proxmox-extension",
+          "control_plane": "Apache CloudStack 4.22 Extension",
+          "virtualization": "Proxmox VE",
+          "class": "oss-extension-contract",
+          "fixed_monthly": 35000,
+          "gpu_hour": 2.18,
+          "network_score": 0.84,
+          "availability": 0.999,
+          "residency": "customer-controlled",
+          "automation": "Ansible + Terraform/OpenTofu"
+        },
+        "monthly_cost_usd": 320178.88,
+        "cost_per_gpu_hour_usd": 2.45,
+        "feasible": false,
+        "violations": [
+          "network_score"
+        ],
+        "score": 18.36
+      },
+      {
+        "platform": {
+          "id": "azure-aks",
+          "control_plane": "Microsoft Azure / AKS",
+          "virtualization": "managed cloud",
+          "class": "proprietary-cloud",
+          "fixed_monthly": 12000,
+          "gpu_hour": 3.5,
+          "network_score": 0.93,
+          "availability": 0.9999,
+          "residency": "provider-region",
+          "automation": "Bicep + Terraform + GitOps"
+        },
+        "monthly_cost_usd": 469856.0,
+        "cost_per_gpu_hour_usd": 3.59,
+        "feasible": false,
+        "violations": [
+          "monthly_cost",
+          "residency"
+        ],
+        "score": -27.45
+      },
+      {
+        "platform": {
+          "id": "aws-eks",
+          "control_plane": "AWS / EKS",
+          "virtualization": "managed cloud",
+          "class": "proprietary-cloud",
+          "fixed_monthly": 13000,
+          "gpu_hour": 3.65,
+          "network_score": 0.92,
+          "availability": 0.9999,
+          "residency": "provider-region",
+          "automation": "CloudFormation + Terraform + GitOps"
+        },
+        "monthly_cost_usd": 490478.4,
+        "cost_per_gpu_hour_usd": 3.75,
+        "feasible": false,
+        "violations": [
+          "monthly_cost",
+          "residency"
+        ],
+        "score": -27.8
+      },
+      {
+        "platform": {
+          "id": "gcp-gke",
+          "control_plane": "Google Cloud / GKE",
+          "virtualization": "managed cloud",
+          "class": "proprietary-cloud",
+          "fixed_monthly": 12500,
+          "gpu_hour": 3.45,
+          "network_score": 0.92,
+          "availability": 0.9999,
+          "residency": "provider-region",
+          "automation": "Terraform + Config Connector + GitOps"
+        },
+        "monthly_cost_usd": 463815.2,
+        "cost_per_gpu_hour_usd": 3.55,
+        "feasible": false,
+        "violations": [
+          "monthly_cost",
+          "residency"
+        ],
+        "score": -27.8
+      }
+    ],
+    "stack": {
+      "iaas_foundation": "Apache CloudStack with KVM is the primary OSS reference; VMware is a licensed hypervisor option",
+      "alternative_virtualization": "Proxmox VE is evaluated both independently and as a CloudStack 4.22 Extension contract; neither path is claimed validated here",
+      "development_virtualization": "VirtualBox is restricted to developer contract tests and is prohibited for production GPU claims",
+      "containers": "Docker/OCI images provide portable packaging; Kubernetes provides scheduling, services, policy and GitOps reconciliation",
+      "network_automation": "Ansible inventories and validates switches, routing, BGP/EVPN, VLAN/VXLAN, QoS and rollback",
+      "configuration_management": "Chef and Puppet are supported configuration-state contracts; neither is misrepresented as the primary network controller",
+      "iac": "Terraform/OpenTofu plus Bicep/provider modules; immutable plan, review, apply and rollback receipts",
+      "compliance_as_code": "OPA/Rego and IaC scanning map deployed resources to identity, segmentation, encryption, logging, residency and change controls"
+    },
+    "production_execution": "disabled",
+    "evidence_boundary": "Reference catalog and synthetic demand; no CloudStack, VMware, Proxmox, VirtualBox, Azure, AWS, GCP, Docker, Kubernetes, Ansible, Chef or Puppet environment was operated by this compiler run.",
+    "receipt_sha256": "abcb7300b7ebe37dea2ec8ac6db96000bdc48e83ae187fce1ece54117654f255"
+  },
+  "kpi_scorecard": {
+    "schema_version": "aifactory/kpi/v1",
+    "summary": {
+      "passed": 20,
+      "total": 30,
+      "attainment_pct": 66.67
+    },
+    "hard_gates": {
+      "no_autonomous_production": true,
+      "evidence_complete": true,
+      "policy_complete": true
+    },
+    "decision": "improve-before-hardware-validation",
+    "metrics": [
+      {
+        "name": "monthly contribution",
+        "category": "business",
+        "value": 500920.0,
+        "unit": "USD",
+        "target": 500000,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "modeled economics"
+      },
+      {
+        "name": "contribution margin",
+        "category": "business",
+        "value": 38.53,
+        "unit": "%",
+        "target": 30,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "modeled economics"
+      },
+      {
+        "name": "revenue per useful GPU hour",
+        "category": "business",
+        "value": 12.6479,
+        "unit": "USD",
+        "target": 8,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "modeled economics"
+      },
+      {
+        "name": "capacity deferral value",
+        "category": "business",
+        "value": 98112.0,
+        "unit": "USD/month",
+        "target": 50000,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "modeled economics"
+      },
+      {
+        "name": "useful GPU utilization",
+        "category": "capacity",
+        "value": 55.0,
+        "unit": "%",
+        "target": 70.0,
+        "direction": "higher",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "idle GPU capacity",
+        "category": "capacity",
+        "value": 45.0,
+        "unit": "%",
+        "target": 20,
+        "direction": "lower",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "GPU queue p95",
+        "category": "capacity",
+        "value": 18,
+        "unit": "minutes",
+        "target": 10,
+        "direction": "lower",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "capacity forecast error",
+        "category": "capacity",
+        "value": 12,
+        "unit": "%",
+        "target": 10,
+        "direction": "lower",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "NCCL bus bandwidth",
+        "category": "network",
+        "value": 265,
+        "unit": "Gbps",
+        "target": 350.0,
+        "direction": "higher",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "inference latency p95",
+        "category": "network",
+        "value": 245,
+        "unit": "ms",
+        "target": 180.0,
+        "direction": "lower",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "packet loss",
+        "category": "network",
+        "value": 0.18,
+        "unit": "%",
+        "target": 0.1,
+        "direction": "lower",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "cross-rack workload fraction",
+        "category": "network",
+        "value": 64.0,
+        "unit": "%",
+        "target": 30,
+        "direction": "lower",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "inference success",
+        "category": "ai",
+        "value": 99.7,
+        "unit": "%",
+        "target": 99.9,
+        "direction": "higher",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "quality evaluation pass",
+        "category": "ai",
+        "value": 96,
+        "unit": "%",
+        "target": 95,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "cost per successful inference",
+        "category": "ai",
+        "value": 0.008,
+        "unit": "USD",
+        "target": 0.01,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "availability",
+        "category": "reliability",
+        "value": 99.93,
+        "unit": "%",
+        "target": 99.9,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "MTTR",
+        "category": "reliability",
+        "value": 26,
+        "unit": "minutes",
+        "target": 30,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "automated recovery success",
+        "category": "reliability",
+        "value": 92,
+        "unit": "%",
+        "target": 90,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "foundation monthly cost",
+        "category": "finops",
+        "value": 325795.2,
+        "unit": "USD",
+        "target": 400000,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "reference catalog"
+      },
+      {
+        "name": "cost per useful GPU hour",
+        "category": "finops",
+        "value": 7.77,
+        "unit": "USD",
+        "target": 8,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "modeled economics"
+      },
+      {
+        "name": "deployment frequency",
+        "category": "delivery",
+        "value": 6,
+        "unit": "per week",
+        "target": 5,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "change failure rate",
+        "category": "delivery",
+        "value": 8,
+        "unit": "%",
+        "target": 10,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "environment provisioning p95",
+        "category": "delivery",
+        "value": 24,
+        "unit": "minutes",
+        "target": 30,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "IaC coverage",
+        "category": "automation",
+        "value": 100,
+        "unit": "%",
+        "target": 100,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "network automation coverage",
+        "category": "automation",
+        "value": 96,
+        "unit": "%",
+        "target": 95,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "configuration compliance",
+        "category": "automation",
+        "value": 98.5,
+        "unit": "%",
+        "target": 99,
+        "direction": "higher",
+        "passed": false,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "policy coverage",
+        "category": "compliance",
+        "value": 100,
+        "unit": "%",
+        "target": 100,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "evidence completeness",
+        "category": "compliance",
+        "value": 100,
+        "unit": "%",
+        "target": 100,
+        "direction": "higher",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "critical drift remediation",
+        "category": "compliance",
+        "value": 48,
+        "unit": "minutes",
+        "target": 60,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "synthetic replay"
+      },
+      {
+        "name": "energy per successful outcome",
+        "category": "sustainability",
+        "value": 4.6,
+        "unit": "Wh",
+        "target": 5,
+        "direction": "lower",
+        "passed": true,
+        "evidence": "synthetic replay"
+      }
+    ],
+    "claim_boundary": "KPIs combine deterministic synthetic telemetry, reference catalog prices and disclosed modeled observations; they are not physical-cluster measurements."
+  }
 }

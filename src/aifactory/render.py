@@ -29,3 +29,21 @@ The remediation is a bounded proposal. Microbenchmarks, twin evaluation, canary,
 """
     (output/"factory-decision.md").write_text(text)
     (output/"promotion-receipt.json").write_text(json.dumps({"receipt_sha256":report["promotion"]["receipt_sha256"],"promotion":report["promotion"]},indent=2)+"\n")
+    if "infrastructure_foundation" in report:
+        foundation=report["infrastructure_foundation"]
+        (output/"infrastructure-foundation.json").write_text(json.dumps(foundation,indent=2)+"\n")
+        f=foundation["selected"]
+        lines=["# Hybrid IaaS foundation decision","",f"- Selected: **{f['platform']['control_plane']} / {f['platform']['virtualization']}**",f"- Class: `{f['platform']['class']}`",f"- Monthly reference cost: **${f['monthly_cost_usd']:,.2f}**",f"- Cost per GPU-hour: **${f['cost_per_gpu_hour_usd']:,.2f}**",f"- Receipt: `{foundation['receipt_sha256']}`","","## Stack boundaries",""]
+        lines += [f"- **{key.replace('_',' ').title()}:** {value}" for key,value in foundation["stack"].items()]
+        lines += ["","> "+foundation["evidence_boundary"],""]
+        (output/"infrastructure-foundation.md").write_text("\n".join(lines))
+        kpis=report["kpi_scorecard"]
+        (output/"kpi-scorecard.json").write_text(json.dumps(kpis,indent=2)+"\n")
+        k=["# AI Fabric Autopilot KPI scorecard","",f"**Decision:** `{kpis['decision']}`  ",f"**Attainment:** `{kpis['summary']['passed']}/{kpis['summary']['total']}` (`{kpis['summary']['attainment_pct']}%`)","","> "+kpis["claim_boundary"],""]
+        for category in dict.fromkeys(x["category"] for x in kpis["metrics"]):
+            k += [f"## {category.title()}","","| KPI | Value | Target | Result |","|---|---:|---:|---|"]
+            for metric in (x for x in kpis["metrics"] if x["category"]==category):
+                sign="≥" if metric["direction"]=="higher" else "≤"
+                k.append(f"| {metric['name']} | {metric['value']} {metric['unit']} | {sign} {metric['target']} {metric['unit']} | {'PASS' if metric['passed'] else 'GAP'} |")
+            k.append("")
+        (output/"kpi-scorecard.md").write_text("\n".join(k))

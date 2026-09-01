@@ -1,0 +1,38 @@
+---
+- name: Validate AI fabric network before workload placement
+  hosts: ai_fabric_switches
+  gather_facts: false
+  serial: 1
+  tasks:
+    - name: Capture running configuration for rollback evidence
+      ansible.netcommon.cli_command:
+        command: show running-config
+      register: prechange
+      changed_when: false
+
+    - name: Capture BGP EVPN state
+      ansible.netcommon.cli_command:
+        command: show bgp summary
+      register: bgp
+      changed_when: false
+
+    - name: Stop when routing adjacency is not established
+      ansible.builtin.assert:
+        that: "'Established' in bgp.stdout"
+        fail_msg: "Network readiness failed; no configuration is applied"
+
+    - name: Create the local evidence directory
+      ansible.builtin.file:
+        path: evidence/network
+        state: directory
+        mode: "0700"
+      delegate_to: localhost
+      run_once: true
+      changed_when: false
+
+    - name: Retain pre-change configuration in the evidence directory
+      ansible.builtin.copy:
+        content: "{{ prechange.stdout }}"
+        dest: "evidence/network/{{ inventory_hostname }}-running-config.txt"
+      delegate_to: localhost
+      changed_when: false

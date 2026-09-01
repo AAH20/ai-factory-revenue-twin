@@ -5,6 +5,8 @@ from typing import Any
 
 from .catalog import TOPOLOGIES
 from .models import FactoryIntent, TelemetryReplay
+from .foundation import compile_foundation
+from .kpis import scorecard
 
 HOURS_PER_MONTH = 730
 
@@ -62,7 +64,7 @@ def route_models(diagnosis: dict[str, Any]) -> list[dict[str, Any]]:
     ]
 
 
-def compile_factory(intent: FactoryIntent, telemetry: TelemetryReplay) -> dict[str, Any]:
+def compile_factory(intent: FactoryIntent, telemetry: TelemetryReplay, foundation_spec: dict[str,Any]|None=None, observations: dict[str,Any]|None=None) -> dict[str, Any]:
     diagnosis_result = diagnose(intent, telemetry)
     options = [evaluate_topology(intent, telemetry, topology) for topology in TOPOLOGIES]
     feasible = [item for item in options if item["feasible"]]
@@ -76,4 +78,8 @@ def compile_factory(intent: FactoryIntent, telemetry: TelemetryReplay) -> dict[s
     }
     payload = {"intent":asdict(intent),"telemetry":asdict(telemetry),"diagnosis":diagnosis_result,"topology_options":options,"selected":selected,"model_routes":route_models(diagnosis_result),"remediation":remediation}
     receipt = hashlib.sha256(json.dumps(payload,sort_keys=True,separators=(",",":")).encode()).hexdigest()
-    return {"schema_version":"1.0",**payload,"promotion":{"receipt_sha256":receipt,"microbenchmarks":"required","digital_twin":"required","canary":"required","independent_approval":"required","automatic_production_execution":"prohibited"},"evidence_boundary":"Synthetic telemetry and reference economics are not DCGM, NCCL, InfiniBand, RoCE, NIM, GPU-cluster or customer measurements."}
+    report={"schema_version":"1.0",**payload,"promotion":{"receipt_sha256":receipt,"microbenchmarks":"required","digital_twin":"required","canary":"required","independent_approval":"required","automatic_production_execution":"prohibited"},"evidence_boundary":"Synthetic telemetry and reference economics are not DCGM, NCCL, InfiniBand, RoCE, NIM, GPU-cluster or customer measurements."}
+    if foundation_spec:
+        report["infrastructure_foundation"]=compile_foundation(foundation_spec)
+        report["kpi_scorecard"]=scorecard(report,report["infrastructure_foundation"],observations or {})
+    return report
